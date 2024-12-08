@@ -17,6 +17,12 @@ const simulador = document.getElementById("simulador") as HTMLElement | null;
 const recept = document.getElementById("receptor") as HTMLElement | null;
 const emisor = document.getElementById("emisor") as HTMLElement | null;
 
+// Fondos
+const aireNavidad = document.getElementById('bg-aire-navidad');          
+const aire = document.getElementById('bg-aire');
+const agua = document.getElementById('bg-agua');
+const vacio = document.getElementById('bg-vacio');
+
 const currentMonth = new Date().getMonth();
 let medioIndex = 0;
 
@@ -94,9 +100,6 @@ medioElement?.addEventListener("change", function () {
 // Función para configurar los inputs
 function configurarInputs(config: ConfiguracionMedio) {
     if (inputVelocidad && inputFrecuencia && emisor && frecuenciaSpan && velocidadSpan) {
-      if (config.minVelocidad >= 50000) {
-        
-      }
         inputVelocidad.setAttribute("min", config.minVelocidad.toString());
         inputVelocidad.setAttribute("max", config.maxVelocidad.toString());
         inputVelocidad.value = config.minVelocidad.toString();
@@ -131,23 +134,23 @@ inputFrecuencia?.addEventListener("input", function () {
 // Arrays de imágenes
 const basePath = window.location.origin;
 const emisorImages: string[] = [
-    `./img/aire/ambulance.png`,
-    `./img/agua/whale.png`,
-    `./img/espacio/star.png`,
-    `./img/aire/airplane.png`
+    `./public/img/aire/ambulance.png`,
+    `./public/img/agua/whale.png`,
+    `./public/img/espacio/star.png`,
+    `./public/img/aire/airplane.png`
 ];
 
 const receptorImages: string[] = [
-    `./img/aire/receptor.png`,
-    `./img/agua/buzo.png`,
-    `./img/espacio/astronaut.png`
+    `https://png.pngtree.com/png-clipart/20230825/original/pngtree-man-raised-hand-rear-back-picture-image_8463680.png`,
+    `https://images.vexels.com/content/132061/preview/scuba-diver-silhouette-45a534.png`,
+    `https://png.pngtree.com/png-vector/20240619/ourmid/pngtree-cute-astronaut-drawing-png-image_12797433.png`
 ];
 
 const bgImages: string[] = [
-    `./img/aire/casa.png`,
-    `./img/agua/ocean-bg.jpg`,
-    `./img/espacio/space-bg.jpg`,
-    `./img/aire/nieve.png`
+    `./public/img/aire/casa.png`,
+    `./public/img/agua/ocean-bg.jpg`,
+    `./public/img/espacio/space-bg.jpg`,
+    `./public/img/aire/nieve.png`
 ];
 
 
@@ -155,7 +158,31 @@ const bgImages: string[] = [
 function cambiarMedio(medio: number) {
 
     if (!simulador || !recept || !emisor) return;
-    const isDecember = currentMonth === 11; 
+    if (!aireNavidad ||!aire ||!agua||!vacio) return;
+
+    const isDecember = currentMonth === 12; 
+    switch (medioIndex) {
+      case 0:
+        aireNavidad.style.display = 'none';          
+        aire.style.display = 'flex';
+        agua.style.display = 'none';
+        vacio.style.display = 'none';
+        break;
+      case 1:
+        aireNavidad.style.display = 'none';          
+        aire.style.display = 'none';
+        agua.style.display = 'flex';
+        vacio.style.display = 'none';
+        break;
+      case 2:
+        aireNavidad.style.display = 'none';          
+        aire.style.display = 'none';
+        agua.style.display = 'none';
+        vacio.style.display = 'flex';
+        break;
+      default:
+        break;
+    }
     simulador.style.backgroundImage = medio == 0 ? ( isDecember ? `url(${bgImages[3]})` : `url(${bgImages[0]})`) : `url(${bgImages[medio]})`;
     recept.style.backgroundImage = `url(${receptorImages[medio]})`;
     emisor.style.backgroundImage = `url(${emisorImages[medio]})`;
@@ -165,7 +192,7 @@ function cambiarMedio(medio: number) {
 }
 
 // Configuración inicial
-/* cambiarMedio(0); */
+cambiarMedio(0);
 configuracion = configuracionesMedios.Ambulancia;
 if (configuracion) configurarInputs(configuracion); 
 
