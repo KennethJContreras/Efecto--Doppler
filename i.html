@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Candal&family=Galindo&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Candal&family=Galindo&family=Yusei+Magic&display=swap"
+        rel="stylesheet">
+    <script type="text/javascript" src="./src/vehicle.ts" defer></script>
+    <script type="text/javascript" src="./src/soundwave.ts" defer></script>
+    <script type="text/javascript" src="./src/main.ts" defer></script>
+    <title>Efecto Doppler</title>
+</head>
+
+<body>
+    <main class="">
+        <aside>
+            <form>
+                <p class="form-title">Variables</p>
+                <div class="input-container">
+                    <label for="velocidad">Velocidad del emisor (m/s):</label>
+                    <input type="range" id="velocidad">
+                </div>
+                <div class="input-container">
+                    <label for="">Posicion del observador (m):</label>
+                    <input type="range" id="posicion">
+                </div>
+                <div class="input-container">
+                    <label for="">Frecuencia inicial de la onda (Hz)</label>
+                    <input type="range" id="frecuencia">
+                </div>
+                <div class="input-container">
+                    <label for="medio">Medio de propagacion:</label>
+                    <select name="" id="medio">
+                        <option value="aire">Aire</option>
+                        <option value="agua">Agua</option>
+                        <option value="vacio">Vacio</option>
+                    </select>
+                </div>
+                <div>
+                    <!-- <button type="button" id="btn-volver">
+                        <a href="/index.html" style="text-decoration: none; color: white;">
+                            Regresar a Inicio
+                        </a>
+                    </button> -->
+                    <!-- <button type="button" id="btn-enviar">
+                        Usar Datos
+                    </button> -->
+                </div>
+            </form>
+        </aside>
+        <div>
+            <div class="title-container">
+                <h1> Efecto Doppler </h1>
+                <p>Medio: <span>aire</span></h2>
+            </div>
+            <section>
+                <div id="street"></div>
+                <div id="streetline"></div>
+                <canvas id="sim-canvas"></canvas>
+            </section>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+
+</body>
+
+</html>
