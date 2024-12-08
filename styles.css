@@ -323,7 +323,7 @@ input[type="range"]:active {
     box-shadow: 7px 17px 48px 0px rgba(0,0,0,0.3);
 }
 
-#sim-canvas, #bg-aire, #bg-aire-navidad, #bg-agua, #bg-vacio, #receptor, #emisor {
+#sim-canvas, #bg-aire, #bg-aire-navidad, #bg-agua, #bg-vacio {
     position: absolute; /* Permite a los elementos apilarse dentro del contenedor */
     top: 0;
     left: 0;
@@ -385,7 +385,7 @@ input[type="range"]:active {
 
 #receptor {
     position: absolute;
-    bottom: 0%; /* Asegura que esté cerca de la parte inferior */
+    bottom: 15px; /* Asegura que esté cerca de la parte inferior */
     left: 50%; /* Centra el elemento horizontalmente */
     transform: translateX(-50%); /* Ajusta el posicionamiento para centrarlo */
 }
