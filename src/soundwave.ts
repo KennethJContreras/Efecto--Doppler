@@ -12,8 +12,8 @@ class SoundWave {
     this.y = y;
     this.color = color;
     this.frequency = frequency;
-    console.log("SoundWave created");
-    console.log(this);
+/*     console.log("SoundWave created");
+    console.log(this); */
   }
 
   update(radiusIncrement) {

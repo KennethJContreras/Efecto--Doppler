@@ -20,7 +20,7 @@ class Vehicle {
   draw(ctx: CanvasRenderingContext2D) {
     ctx.beginPath();
     ctx.textAlign = "center";
-    ctx.font = "50px sans"
+    ctx.font = "200px sans"
     ctx.strokeText(this.illustration, this.x, this.y);
     ctx.stroke();
   }

@@ -26,8 +26,6 @@ interface ConfiguracionMedio {
     maxVelocidad: number;
     minFrecuencia: number;
     maxFrecuencia: number;
-    posicionX: number;
-    pocisionY: number;
 }
 
 const configuracionesMedios: Record<string, ConfiguracionMedio> = {
@@ -36,32 +34,24 @@ const configuracionesMedios: Record<string, ConfiguracionMedio> = {
         maxVelocidad: 6,
         minFrecuencia: 10,
         maxFrecuencia: 50,
-        posicionX: 100,
-        pocisionY: 0
     },
     Avion: {
-        minVelocidad: 3,
+        minVelocidad: 33,
         maxVelocidad: 250,
         minFrecuencia: 20,
         maxFrecuencia: 20000,
-        posicionX: 0,
-        pocisionY: 0
     },
     Ambulancia: {
         minVelocidad: 22,
-        maxVelocidad: 250,
+        maxVelocidad: 33,
         minFrecuencia: 500,
         maxFrecuencia: 6000,
-        posicionX: 100,
-        pocisionY: 60
     },
     Estrella: {
         minVelocidad: 50000,
         maxVelocidad: 300000,
         minFrecuencia: 3000000000000,
         maxFrecuencia: 1000000000000000000,
-        posicionX: 15,
-        pocisionY: 0
     }
 };
 
@@ -104,6 +94,9 @@ medioElement?.addEventListener("change", function () {
 // Función para configurar los inputs
 function configurarInputs(config: ConfiguracionMedio) {
     if (inputVelocidad && inputFrecuencia && emisor && frecuenciaSpan && velocidadSpan) {
+      if (config.minVelocidad >= 50000) {
+        
+      }
         inputVelocidad.setAttribute("min", config.minVelocidad.toString());
         inputVelocidad.setAttribute("max", config.maxVelocidad.toString());
         inputVelocidad.value = config.minVelocidad.toString();
@@ -113,9 +106,6 @@ function configurarInputs(config: ConfiguracionMedio) {
         inputFrecuencia.setAttribute("max", config.maxFrecuencia.toString());
         inputFrecuencia.value = config.minFrecuencia.toString();
         frecuenciaSpan.textContent = config.minFrecuencia.toString();
-
-        emisor.style.left = `${config.posicionX}%`;
-        emisor.style.top = `${config.pocisionY}%`;
     }
 }
 
@@ -139,24 +129,25 @@ inputFrecuencia?.addEventListener("input", function () {
 });
 
 // Arrays de imágenes
+const basePath = window.location.origin;
 const emisorImages: string[] = [
-    "/img/aire/ambulance.png",
-    "/img/agua/whale.png",
-    "/img/espacio/star.png",
-    "/img/aire/airplane.png"
+    `./img/aire/ambulance.png`,
+    `./img/agua/whale.png`,
+    `./img/espacio/star.png`,
+    `./img/aire/airplane.png`
 ];
 
 const receptorImages: string[] = [
-    "/img/aire/receptor.png",
-    "/img/agua/buzo.png",
-    "/img/espacio/astronaut.png"
+    `./img/aire/receptor.png`,
+    `./img/agua/buzo.png`,
+    `./img/espacio/astronaut.png`
 ];
 
 const bgImages: string[] = [
-    '/img/aire/casa.png',
-    '/img/agua/ocean-bg.jpg',
-    '/img/espacio/space-bg.jpg',
-    '/img/aire/nieve.png'
+    `./img/aire/casa.png`,
+    `./img/agua/ocean-bg.jpg`,
+    `./img/espacio/space-bg.jpg`,
+    `./img/aire/nieve.png`
 ];
 
 
@@ -168,15 +159,15 @@ function cambiarMedio(medio: number) {
     simulador.style.backgroundImage = medio == 0 ? ( isDecember ? `url(${bgImages[3]})` : `url(${bgImages[0]})`) : `url(${bgImages[medio]})`;
     recept.style.backgroundImage = `url(${receptorImages[medio]})`;
     emisor.style.backgroundImage = `url(${emisorImages[medio]})`;
-    console.log(recept)
-    console.log(emisor) 
+    console.log(recept);
+    console.log(emisor); 
     console.log(medio);
 }
 
 // Configuración inicial
-cambiarMedio(0);
+/* cambiarMedio(0); */
 configuracion = configuracionesMedios.Ambulancia;
-if (configuracion) configurarInputs(configuracion);
+if (configuracion) configurarInputs(configuracion); 
 
 
 
@@ -220,14 +211,45 @@ canvas.height = window.innerHeight;
 // Define vehicle
 const vehicle = new Vehicle(
   window.innerWidth,        // X position on canvas
-  window.innerHeight / 2,   // Y position on canvas
+  window.innerHeight - window.innerHeight / 3,   // Y position on canvas
   "🚗"
 );
 
+const airplane = new Vehicle(
+  window.innerWidth,        // X position on canvas
+  window.innerHeight / 2,   // Y position on canvas
+  "✈️"
+);
+
+const whale = new Vehicle(
+  window.innerWidth,        // X position on canvas
+  window.innerHeight / 2,   // Y position on canvas
+  "🐋"
+);
+
+const star = new Vehicle(
+  window.innerWidth,        // X position on canvas
+  window.innerHeight / 2,   // Y position on canvas
+  "⭐"
+);
 // Insert new waves according to the frequency
 
 function waveGenerator() {
-  let wave = new SoundWave(vehicle.x, vehicle.y, "#00007f4f", waveFrequency);
+  let wave;
+  switch (medioIndex) {
+    case 0:
+      wave = new SoundWave(vehicle.x, vehicle.y, "#00007f4f", waveFrequency);
+      break;
+    case 1:
+      wave = new SoundWave(whale.x, whale.y, "#00007f4f", waveFrequency);
+      break;
+    case 2:
+      wave = new SoundWave(star.x, star.y, "#00007f4f", waveFrequency);
+      break;
+    default:
+      break;
+  }
+  
   waves.push(wave);
   setTimeout(waveGenerator, waveFrequency);
 }
@@ -260,7 +282,20 @@ function loop() {
    updateControls();
  
   // Update vehicle position
-  vehicle.update(-vehicleSpeed);
+  switch (medioIndex) {
+    case 0:
+      vehicle.update(-vehicleSpeed);
+      break;
+    case 1:
+      whale.update(-vehicleSpeed);
+      break;
+    case 2:
+      star.update(-vehicleSpeed);
+      break;
+    default:
+      break;
+  }
+  
 
   // Update waves size and position
   waves.forEach((wave) => {
@@ -271,7 +306,24 @@ function loop() {
   // Clear previously drawn waves
   ctx.reset();
 
-  vehicle.draw(ctx);
+  if (medioIndex == 0) {
+    
+  }
+
+  switch (medioIndex) {
+    case 0:
+      vehicle.draw(ctx);
+      break;
+    case 1:
+      whale.draw(ctx);
+      break;
+    case 2:
+      star.draw(ctx);
+      break;
+    default:
+      break;
+  }
+  
   // Draw the waves
   waves.forEach((wave) => {
     wave.draw(ctx);
@@ -284,9 +336,22 @@ function loop() {
 if (btnUsarDatos) {
   btnUsarDatos.addEventListener('click', () => {
     if (btnUsarDatos.textContent === "Usar datos") {
-      btnUsarDatos.textContent = "Parar";
+      btnUsarDatos.textContent = "Reiniciar";
       endLoop = false;
-      vehicle.x = window.innerWidth;
+      switch (medioIndex) {
+        case 0:
+          vehicle.x = window.innerWidth;
+          break;
+        case 1:
+          whale.x = window.innerWidth;
+          break;
+        case 2:
+          star.x = window.innerWidth;
+          break;
+        default:
+          break;
+      }
+      
 
       loop();
     } else {
