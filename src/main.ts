@@ -75,8 +75,8 @@ const configuracionesMedios: Record<string, ConfiguracionMedio> = {
         maxFrecuencia: 6000,
     },
     Estrella: {
-        minVelocidad: 50000,
-        maxVelocidad: 300000,
+        minVelocidad: 250,
+        maxVelocidad: 600,
         minFrecuencia: 3000000000000,
         maxFrecuencia: 1000000000000000000,
     }
