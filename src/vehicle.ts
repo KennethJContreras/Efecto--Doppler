@@ -3,8 +3,9 @@ class Vehicle {
   x: number;
   y: number;
   illustration: string;
+  soundVariation: string;
 
-  constructor(x, y, illustration) {
+  constructor(x, y, illustration, soundVariation = null) {
     this.x = x;
     this.y = y;
     this.illustration = illustration;

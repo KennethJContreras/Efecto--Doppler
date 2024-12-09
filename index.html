@@ -12,9 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Candal&family=Galindo&family=Yusei+Magic&display=swap"
         rel="stylesheet">
 
-        <script type="text/javascript" src="./src/vehicle.ts" defer></script>
-        <script type="text/javascript" src="./src/soundwave.ts" defer></script>
-        <script type="text/javascript" src="./src/main.ts" defer></script>
+    <script type="text/javascript" src="./src/vehicle.ts" defer></script>
+    <script type="text/javascript" src="./src/soundwave.ts" defer></script>
+    <script type="text/javascript" src="./src/utils.ts" defer></script>
+    <script type="text/javascript" src="./src/main.ts" defer></script>
 
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/8b44041adf.js" crossorigin="anonymous"></script>
@@ -68,7 +69,7 @@
             </div>
             <section id="simulador">
                 <canvas id="sim-canvas"></canvas>
-                <div id="receptor"></div>
+                <img id="receptor"></img>
                 <div id="emisor"></div>
                 <span id="bg-aire"></span>
                 <span id="bg-aire-navidad"></span>
@@ -85,11 +86,11 @@
             <p>F = <span id="footer-frecuencia"></span> Hz</p>
             <p>Medio = <span id="footer-medio">Aire</span></p>
         </div>
-        <div id="panel-control">
+        <!-- <div id="panel-control">
             <div class="icon"> <i class="fa-solid fa-backward"></i> </div>
             <div class="icon"> <i class="fa-solid fa-play"></i> </div>
             <div class="icon"> <i class="fa-solid fa-forward"></i> </div>
-        </div>
+        </div> -->
         <div id="panel-volumen">
             <label for="volumen"><i class="fa-solid fa-volume-high"></i></label>
             <input type="range" id="volumen" min="0" max="100" value="50">
