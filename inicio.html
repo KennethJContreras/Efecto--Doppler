@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efecto Doppler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #tituloED {
+            font-size: 36px;
+            margin-top: 50px;
+            text-align: center;
+            color: #333;
+        }
+
+        #contenedorTitulo {
+            padding: 20px;
+        }
+
+        .contenedor {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .div {
+            /*outline: 10px solid #ffcccb;*/
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            text-align: justify;
+        }
+
+        .div-40 {
+            width: 40%; 
+            /*outline: 10px solid #add8e6;*/
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #buttonSimulador {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 20px;
+            margin: 25px;
+        }
+
+        #buttonSimulador a {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #buttonSimulador a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenedorTitulo">
+        <h1 id="tituloED">
+            Efecto Doppler
+        </h1>
+    </div>
+    <div class="contenedor">
+        <div class="div" style="width: 60%;">
+            <div style="border-left: 15px solid #79cae5; padding-left: 15px;">
+                Se conoce como <b>Efecto Doppler</b> al cambio en la frecuencia de una onda como consecuencia del movimiento relativo entre emisor y receptor. Observamos este efecto numerosas veces en la vida diaria. Cuando un coche se nos acerca a gran velocidad, percibimos que el sonido del motor es más agudo que cuando se aleja de nosotros. Esta percepción se debe al hecho de que cuando el coche se acerca, las ondas sonoras emitidas parecen juntarse y aumenta su frecuencia; al contrario, cuando el coche se aleja, las ondas parecen separarse, lo que hace que la frecuencia disminuya.
+            </div>
+            <div style="text-align: center;">
+                <img src="./public/img/efecto_doppler.jpg" alt="Efecto Doppler">
+            </div>
+        </div>
+        <div class="div-40">
+            <div id="buttonSimulador">
+                Aprendamos a través de la experimentación más sobre este fenómeno físico 😉
+                <a href="./index.html">Ver simulador</a>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="div" style="padding: 40px;">
+        <div style="margin-bottom: 50px;">
+            Este fenómeno que define el funcionamiento de los radares, el efecto Doppler, debe su nombre a su descubridor Christian Doppler, quien observó por primera vez en 1842 la curiosa interacción entre las ondas cuando aparecen cambios de frecuencia. Para un individuo que se encuentra en un espacio donde se está produciendo el efecto Doppler, esa alteración en la frecuencia se puede percibir como un pequeño aumento o disminución en la tonalidad de un sonido o de una luz, dependiendo del tipo de onda que actúe como protagonista. En sí, se trata de un fenómeno basado en la relación entre la velocidad relativa de una fuente, en este caso, un vehículo, y el observador, el radar en el caso que estamos discutiendo. De esa forma, cuando la fuente y el observador se acercan, la frecuencia que recibe el radar es mayor, mientras que cuando se alejan, la frecuencia aparente disminuye.
+        </div>
+
+        <div style="text-align: center; margin-bottom: 50px;">
+            <img src="./public/img/simulacion_doppler.jpg" alt="Efecto Doppler">
+        </div>
+
+        <div>
+            Aunque pueda parecer algo complicado de entender, no lo es tanto. De hecho, es un efecto que experimentas todos los días sin darte apenas cuenta. Piensa en una ambulancia: cuando esta se acerca, la identificas porque su sonido es cada vez más alto y más agudo; por el contrario, cuando se aleja, su sonido se va haciendo más grave a medida que va desapareciendo. Esto es debido a que mientras se acerca, las ondas sonoras que emite se van comprimiendo, aumentando la frecuencia, lo que resulta en un tono más alto y agudo. Al alejarse el efecto es el contrario: las ondas se expanden, disminuyendo la frecuencia entre ellas y dando lugar a un tono mucho más grave.
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="div" style="margin-left: 120px; margin-right: 120px;">
+        <h3>Ejemplo</h3>
+        <div>
+            La ambulancia de la imagen se desplaza de izquierda a derecha. Cuando se acerca a la chica de la figura que lleva un maletín, en la derecha de la imagen, la onda "se comprime", es decir, la longitud de onda es corta, la frecuencia alta y, por tanto, el tono del sonido percibido será agudo. Por otro lado, cuando la ambulancia se aleja, a la izquierda de la imagen, la onda "se descomprime", es decir, la longitud de onda es larga, la frecuencia baja y, por tanto, el tono que percibe la chica que lleva el bolso será grave.
+        </div>
+        <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+            <img src="./public/img//efecto_doppler_ejemplo.jpg" alt="Efecto Doppler">
+        </div>
+    </div>
+</body>
+</html>
