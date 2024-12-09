@@ -1,101 +1,130 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
-
-    <!-- google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Candal&family=Galindo&family=Yusei+Magic&display=swap"
-        rel="stylesheet">
-
-        <script type="text/javascript" src="./src/vehicle.ts" defer></script>
-        <script type="text/javascript" src="./src/soundwave.ts" defer></script>
-        <script type="text/javascript" src="./src/main.ts" defer></script>
-
-    <!-- font awesome -->
-    <script src="https://kit.fontawesome.com/8b44041adf.js" crossorigin="anonymous"></script>
-
     <title>Efecto Doppler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #tituloED {
+            font-size: 36px;
+            margin-top: 50px;
+            text-align: center;
+            color: #333;
+        }
+
+        #contenedorTitulo {
+            padding: 20px;
+        }
+
+        .contenedor {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .div {
+            /*outline: 10px solid #ffcccb;*/
+            padding: 20px;
+            font-size: 18px;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            text-align: justify;
+        }
+
+        .div-40 {
+            width: 40%; 
+            /*outline: 10px solid #add8e6;*/
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #buttonSimulador {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 20px;
+            margin: 25px;
+        }
+
+        #buttonSimulador a {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #buttonSimulador a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-
 <body>
-    <main class="">
-        <aside>
-
-            <form>
-                <p class="form-title">Variables</p>
-                <div class="input-container">
-                    <label for="velocidad">Velocidad del emisor (m/s):</label>
-                    <input type="range" id="velocidad">
-                </div>
-
-                <div class="input-container">
-                    <label for="posicion">Posicion del observador con respecto al centro(m):</label>
-                    <input type="range" min="-5" max="5" id="posicion">
-                </div>
-
-                <div class="input-container">
-                    <label for="frecuencia">Frecuencia inicial de la onda (Hz)</label>
-                    <input type="range" id="frecuencia">
-                </div>
-
-                <div class="input-container">
-                    <label for="medio">Medio de propagacion:</label>
-                    <select name="" id="medio">
-                        <option value="Aire">Aire</option>
-                        <option value="Agua">Agua</option>
-                        <option value="Vacio">Vacio</option>
-                    </select>
-                </div>
-
-            </form>
-
-            <div style="width: 100%;">
-                <a type="button" id="btn-volver" href="./inicio.html"><i class="fa-solid fa-chevron-left"></i> Volver</a>
-                <button type="button" id="btn-enviar">Usar datos</button>
+    <div id="contenedorTitulo">
+        <h1 id="tituloED">
+            Efecto Doppler
+        </h1>
+    </div>
+    <div class="contenedor">
+        <div class="div" style="width: 60%;">
+            <div style="border-left: 15px solid #79cae5; padding-left: 15px;">
+                Se conoce como <b>Efecto Doppler</b> al cambio en la frecuencia de una onda como consecuencia del movimiento relativo entre emisor y receptor. Observamos este efecto numerosas veces en la vida diaria. Cuando un coche se nos acerca a gran velocidad, percibimos que el sonido del motor es más agudo que cuando se aleja de nosotros. Esta percepción se debe al hecho de que cuando el coche se acerca, las ondas sonoras emitidas parecen juntarse y aumenta su frecuencia; al contrario, cuando el coche se aleja, las ondas parecen separarse, lo que hace que la frecuencia disminuya.
             </div>
+            <div style="text-align: center;">
+                <img src="./public/img/efecto_doppler.jpg" alt="Efecto Doppler">
+            </div>
+        </div>
+        <div class="div-40">
+            <div id="buttonSimulador">
+                Aprendamos a través de la experimentación más sobre este fenómeno físico 😉
+                <a href="./simulador.html">Ver simulador</a>
+            </div>
+        </div>
+    </div>
 
+    <hr>
 
-        </aside>
+    <div class="div" style="padding: 40px;">
+        <div style="margin-bottom: 50px;">
+            Este fenómeno que define el funcionamiento de los radares, el efecto Doppler, debe su nombre a su descubridor Christian Doppler, quien observó por primera vez en 1842 la curiosa interacción entre las ondas cuando aparecen cambios de frecuencia. Para un individuo que se encuentra en un espacio donde se está produciendo el efecto Doppler, esa alteración en la frecuencia se puede percibir como un pequeño aumento o disminución en la tonalidad de un sonido o de una luz, dependiendo del tipo de onda que actúe como protagonista. En sí, se trata de un fenómeno basado en la relación entre la velocidad relativa de una fuente, en este caso, un vehículo, y el observador, el radar en el caso que estamos discutiendo. De esa forma, cuando la fuente y el observador se acercan, la frecuencia que recibe el radar es mayor, mientras que cuando se alejan, la frecuencia aparente disminuye.
+        </div>
+
+        <div style="text-align: center; margin-bottom: 50px;">
+            <img src="./public/img/simulacion_doppler.jpg" alt="Efecto Doppler">
+        </div>
+
         <div>
-            <div class="title-container">
-                <h1> Efecto Doppler </h1>
-                <p>Medio: <span id="medio-title">Aire</span></h2>
-            </div>
-            <section id="simulador">
-                <canvas id="sim-canvas"></canvas>
-                <div id="receptor"></div>
-                <div id="emisor"></div>
-                <span id="bg-aire"></span>
-                <span id="bg-aire-navidad"></span>
-                <span id="bg-agua"></span>
-                <span id="bg-vacio"></span>
+            Aunque pueda parecer algo complicado de entender, no lo es tanto. De hecho, es un efecto que experimentas todos los días sin darte apenas cuenta. Piensa en una ambulancia: cuando esta se acerca, la identificas porque su sonido es cada vez más alto y más agudo; por el contrario, cuando se aleja, su sonido se va haciendo más grave a medida que va desapareciendo. Esto es debido a que mientras se acerca, las ondas sonoras que emite se van comprimiendo, aumentando la frecuencia, lo que resulta en un tono más alto y agudo. Al alejarse el efecto es el contrario: las ondas se expanden, disminuyendo la frecuencia entre ellas y dando lugar a un tono mucho más grave.
+        </div>
+    </div>
 
-            </section>
-        </div>
-    </main>
-    <footer>
-        <div id="panel-datos">
-            <p>Ve = <span id="footer-velocidad"></span> m/s</p>
-            <p>Do = <span id="footer-posicion"></span> m</p>
-            <p>F = <span id="footer-frecuencia"></span> Hz</p>
-            <p>Medio = <span id="footer-medio">Aire</span></p>
-        </div>
-        <div id="panel-control">
-            <div class="icon"> <i class="fa-solid fa-backward"></i> </div>
-            <div class="icon"> <i class="fa-solid fa-play"></i> </div>
-            <div class="icon"> <i class="fa-solid fa-forward"></i> </div>
-        </div>
-        <div id="panel-volumen">
-            <label for="volumen"><i class="fa-solid fa-volume-high"></i></label>
-            <input type="range" id="volumen" min="0" max="100" value="50">
-        </div>
-    </footer>
+    <hr>
 
+    <div class="div" style="margin-left: 120px; margin-right: 120px;">
+        <h3>Ejemplo</h3>
+        <div>
+            La ambulancia de la imagen se desplaza de izquierda a derecha. Cuando se acerca a la chica de la figura que lleva un maletín, en la derecha de la imagen, la onda "se comprime", es decir, la longitud de onda es corta, la frecuencia alta y, por tanto, el tono del sonido percibido será agudo. Por otro lado, cuando la ambulancia se aleja, a la izquierda de la imagen, la onda "se descomprime", es decir, la longitud de onda es larga, la frecuencia baja y, por tanto, el tono que percibe la chica que lleva el bolso será grave.
+        </div>
+        <div style="text-align: center; margin-top: 50px; margin-bottom: 50px;">
+            <img src="./public/img//efecto_doppler_ejemplo.jpg" alt="Efecto Doppler">
+        </div>
+    </div>
 </body>
-
 </html>

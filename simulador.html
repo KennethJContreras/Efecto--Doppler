@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Candal&family=Galindo&family=Yusei+Magic&display=swap"
+        rel="stylesheet">
+
+        <script type="text/javascript" src="./src/vehicle.ts" defer></script>
+        <script type="text/javascript" src="./src/soundwave.ts" defer></script>
+        <script type="text/javascript" src="./src/main.ts" defer></script>
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/8b44041adf.js" crossorigin="anonymous"></script>
+
+    <title>Efecto Doppler</title>
+</head>
+
+<body>
+    <main class="">
+        <aside>
+
+            <form>
+                <p class="form-title">Variables</p>
+                <div class="input-container">
+                    <label for="velocidad">Velocidad del emisor (m/s):</label>
+                    <input type="range" id="velocidad">
+                </div>
+
+                <div class="input-container">
+                    <label for="posicion">Posicion del observador con respecto al centro(m):</label>
+                    <input type="range" min="-5" max="5" id="posicion">
+                </div>
+
+                <div class="input-container">
+                    <label for="frecuencia">Frecuencia inicial de la onda (Hz)</label>
+                    <input type="range" id="frecuencia">
+                </div>
+
+                <div class="input-container">
+                    <label for="medio">Medio de propagacion:</label>
+                    <select name="" id="medio">
+                        <option value="Aire">Aire</option>
+                        <option value="Agua">Agua</option>
+                        <option value="Vacio">Vacio</option>
+                    </select>
+                </div>
+
+            </form>
+
+            <div style="width: 100%;">
+                <a type="button" id="btn-volver" href="./index.html"><i class="fa-solid fa-chevron-left"></i> Volver</a>
+                <button type="button" id="btn-enviar">Usar datos</button>
+            </div>
+
+
+        </aside>
+        <div>
+            <div class="title-container">
+                <h1> Efecto Doppler </h1>
+                <p>Medio: <span id="medio-title">Aire</span></h2>
+            </div>
+            <section id="simulador">
+                <canvas id="sim-canvas"></canvas>
+                <div id="receptor"></div>
+                <div id="emisor"></div>
+                <span id="bg-aire"></span>
+                <span id="bg-aire-navidad"></span>
+                <span id="bg-agua"></span>
+                <span id="bg-vacio"></span>
+
+            </section>
+        </div>
+    </main>
+    <footer>
+        <div id="panel-datos">
+            <p>Ve = <span id="footer-velocidad"></span> m/s</p>
+            <p>Do = <span id="footer-posicion"></span> m</p>
+            <p>F = <span id="footer-frecuencia"></span> Hz</p>
+            <p>Medio = <span id="footer-medio">Aire</span></p>
+        </div>
+        <div id="panel-control">
+            <div class="icon"> <i class="fa-solid fa-backward"></i> </div>
+            <div class="icon"> <i class="fa-solid fa-play"></i> </div>
+            <div class="icon"> <i class="fa-solid fa-forward"></i> </div>
+        </div>
+        <div id="panel-volumen">
+            <label for="volumen"><i class="fa-solid fa-volume-high"></i></label>
+            <input type="range" id="volumen" min="0" max="100" value="50">
+        </div>
+    </footer>
+
+</body>
+
+</html>
