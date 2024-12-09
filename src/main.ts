@@ -26,6 +26,27 @@ const vacio = document.getElementById('bg-vacio');
 const currentMonth = new Date().getMonth();
 let medioIndex = 0;
 
+inputPosicion?.addEventListener('input', () => { 
+  if (recept) {
+    // Obtiene el ancho del contenedor y del receptor
+    const contenedor = document.getElementById('simulador');
+    const anchoContenedor = contenedor.offsetWidth;
+    const anchoReceptor = recept.offsetWidth;
+
+    // Calcula el rango de movimiento permitido para el receptor
+    const margenIzquierdo = 0; // Límite izquierdo
+    const margenDerecho = anchoContenedor - anchoReceptor; // Límite derecho
+
+    // Mapea los valores de -5 a 5 al rango entre margenIzquierdo y margenDerecho
+    const posicionNormalizada = ((parseInt(inputPosicion.value) + 5) / 10) * margenDerecho;
+
+    // Aplica la posición calculada
+    recept.style.left = `${posicionNormalizada}px`;
+  }
+});
+
+
+
 // Tipado para la configuración de medios
 interface ConfiguracionMedio {
     minVelocidad: number;
