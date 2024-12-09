@@ -169,7 +169,7 @@ footer {
     position: absolute;
     display: grid;
     margin-top: 2rem;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 2fr 1fr;
     align-items: center; 
     gap: 0 1rem; 
     padding: 0rem 6rem;
@@ -387,11 +387,13 @@ input[type="range"]:active {
 #receptor {
     position: absolute;
     bottom: 15px; /* Posición fija desde abajo */
+    left: 50%;
 }
 
 
 #emisor {
     position: absolute;
+    bottom: 15px ;
     transform: translateX(-50%);
 }
 
