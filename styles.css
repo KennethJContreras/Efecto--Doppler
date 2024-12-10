@@ -115,8 +115,23 @@ button:hover {
 }
 
 #btn-volver {
-    background-color: #666666;
+    display: inline-flex; /* Alinea el contenido en una sola línea */
+    align-items: center;  /* Alinea verticalmente el ícono y el texto */
+    padding: 10px 20px;    /* Espaciado dentro del enlace */
+    background-color: #666666; /* Color de fondo */
+    color: white;           /* Color del texto */
+    text-decoration: none;  /* Quita el subrayado del enlace */
+    border-radius: 5px;     /* Bordes redondeados */
+    font-size: 16px;        /* Tamaño de la fuente */
+    cursor: pointer;       /* Cambia el cursor para mostrar que es clickeable */
+}
 
+#btn-volver i {
+    margin-right: 8px; /* Espacio entre el ícono y el texto */
+}
+
+#btn-volver:hover {
+    background-color: #555555; /* Cambio de color al pasar el ratón */
 }
 
 #btn-enviar {

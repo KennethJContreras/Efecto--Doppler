@@ -57,30 +57,30 @@ interface ConfiguracionMedio {
 }
 
 const configuracionesMedios: Record<string, ConfiguracionMedio> = {
-  Ballena: {
-    minVelocidad: 1,
-    maxVelocidad: 6,
-    minFrecuencia: 10,
-    maxFrecuencia: 50,
-  },
-  Avion: {
-    minVelocidad: 33,
-    maxVelocidad: 250,
-    minFrecuencia: 20,
-    maxFrecuencia: 20000,
-  },
-  Ambulancia: {
-    minVelocidad: 22,
-    maxVelocidad: 33,
-    minFrecuencia: 500,
-    maxFrecuencia: 6000,
-  },
-  Estrella: {
-    minVelocidad: 50000,
-    maxVelocidad: 300000,
-    minFrecuencia: 3000000000000,
-    maxFrecuencia: 1000000000000000000,
-  }
+    Ballena: {
+        minVelocidad: 1,
+        maxVelocidad: 6,
+        minFrecuencia: 10,
+        maxFrecuencia: 50,
+    },
+    Avion: {
+        minVelocidad: 33,
+        maxVelocidad: 250,
+        minFrecuencia: 20,
+        maxFrecuencia: 20000,
+    },
+    Ambulancia: {
+        minVelocidad: 22,
+        maxVelocidad: 33,
+        minFrecuencia: 500,
+        maxFrecuencia: 6000,
+    },
+    Estrella: {
+        minVelocidad: 250,
+        maxVelocidad: 600,
+        minFrecuencia: 3000000000000,
+        maxFrecuencia: 1000000000000000000,
+    }
 };
 
 // Variables globales para configuraciones
