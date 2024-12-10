@@ -12,13 +12,14 @@ const btnUsarDatos = document.getElementById("btn-enviar") as HTMLButtonElement 
 const inputVelocidad = document.getElementById("velocidad") as HTMLInputElement | null;
 const inputPosicion = document.getElementById("posicion") as HTMLInputElement | null;
 const inputFrecuencia = document.getElementById("frecuencia") as HTMLInputElement | null;
+const inputVolumen = document.getElementById("volumen") as HTMLInputElement | null;
 
 const simulador = document.getElementById("simulador") as HTMLElement | null;
 const recept = document.getElementById("receptor") as HTMLElement | null;
 const emisor = document.getElementById("emisor") as HTMLElement | null;
 
 // Fondos
-const aireNavidad = document.getElementById('bg-aire-navidad');          
+const aireNavidad = document.getElementById('bg-aire-navidad');
 const aire = document.getElementById('bg-aire');
 const agua = document.getElementById('bg-agua');
 const vacio = document.getElementById('bg-vacio');
@@ -26,11 +27,11 @@ const vacio = document.getElementById('bg-vacio');
 const currentMonth = new Date().getMonth();
 let medioIndex = 0;
 
-inputPosicion?.addEventListener('input', () => { 
+inputPosicion?.addEventListener('input', () => {
   if (recept) {
     // Obtiene el ancho del contenedor y del receptor
     const contenedor = document.getElementById('simulador');
-    const anchoContenedor = contenedor.offsetWidth;
+    const anchoContenedor = contenedor!.offsetWidth;
     const anchoReceptor = recept.offsetWidth;
 
     // Calcula el rango de movimiento permitido para el receptor
@@ -49,10 +50,10 @@ inputPosicion?.addEventListener('input', () => {
 
 // Tipado para la configuración de medios
 interface ConfiguracionMedio {
-    minVelocidad: number;
-    maxVelocidad: number;
-    minFrecuencia: number;
-    maxFrecuencia: number;
+  minVelocidad: number;
+  maxVelocidad: number;
+  minFrecuencia: number;
+  maxFrecuencia: number;
 }
 
 const configuracionesMedios: Record<string, ConfiguracionMedio> = {
@@ -89,147 +90,143 @@ let configuracion: ConfiguracionMedio | null = null;
 const medioElement = document.getElementById("medio") as HTMLSelectElement | null;
 
 medioElement?.addEventListener("change", function () {
-    const medio = this.value; // Obtiene el valor seleccionado
-    if (medioSpan && titulo) {
-        medioSpan.textContent = medio;
-        titulo.textContent = medio;
-    }
+  const medio = this.value; // Obtiene el valor seleccionado
+  if (medioSpan && titulo) {
+    medioSpan.textContent = medio;
+    titulo.textContent = medio;
+  }
 
-    switch (medio) {
-        case "Aire":
-            medioIndex = 0;
-            configuracion = configuracionesMedios.Ambulancia;
-            break;
-        case "Agua":
-            medioIndex = 1;
-            configuracion = configuracionesMedios.Ballena;
-            break;
-        case "Vacio":
-            medioIndex = 2;
-            configuracion = configuracionesMedios.Estrella;
-            break;
-    }
+  switch (medio) {
+    case "Aire":
+      medioIndex = 0;
+      configuracion = configuracionesMedios.Ambulancia;
+      break;
+    case "Agua":
+      medioIndex = 1;
+      configuracion = configuracionesMedios.Ballena;
+      break;
+    case "Vacio":
+      medioIndex = 2;
+      configuracion = configuracionesMedios.Estrella;
+      break;
+  }
 
-    cambiarMedio(medioIndex);
-    if (configuracion) {
-        configurarInputs(configuracion);
-    }
+  cambiarMedio(medioIndex);
+  if (configuracion) {
+    configurarInputs(configuracion);
+  }
 
-    if (posicionSpan) posicionSpan.textContent = "0"; // Restablecer posición
+  if (posicionSpan) posicionSpan.textContent = "0"; // Restablecer posición
 });
 
 // Función para configurar los inputs
 function configurarInputs(config: ConfiguracionMedio) {
-    if (inputVelocidad && inputFrecuencia && emisor && frecuenciaSpan && velocidadSpan) {
-        inputVelocidad.setAttribute("min", config.minVelocidad.toString());
-        inputVelocidad.setAttribute("max", config.maxVelocidad.toString());
-        inputVelocidad.value = config.minVelocidad.toString();
-        velocidadSpan.textContent = config.minVelocidad.toString();
+  if (inputVelocidad && inputFrecuencia && emisor && frecuenciaSpan && velocidadSpan) {
+    inputVelocidad.setAttribute("min", config.minVelocidad.toString());
+    inputVelocidad.setAttribute("max", config.maxVelocidad.toString());
+    inputVelocidad.value = config.minVelocidad.toString();
+    velocidadSpan.textContent = config.minVelocidad.toString();
 
-        inputFrecuencia.setAttribute("min", config.minFrecuencia.toString());
-        inputFrecuencia.setAttribute("max", config.maxFrecuencia.toString());
-        inputFrecuencia.value = config.minFrecuencia.toString();
-        frecuenciaSpan.textContent = config.minFrecuencia.toString();
-    }
+    inputFrecuencia.setAttribute("min", config.minFrecuencia.toString());
+    inputFrecuencia.setAttribute("max", config.maxFrecuencia.toString());
+    inputFrecuencia.value = config.minFrecuencia.toString();
+    frecuenciaSpan.textContent = config.minFrecuencia.toString();
+  }
 }
 
 // Listeners para inputs
 inputVelocidad?.addEventListener("input", function () {
-    if (velocidadSpan) {
-        velocidadSpan.textContent = inputVelocidad.value;
-    }
+  if (velocidadSpan) {
+    velocidadSpan.textContent = inputVelocidad.value;
+  }
 });
 
 inputPosicion?.addEventListener("input", function () {
-    if (posicionSpan) {
-        posicionSpan.textContent = inputPosicion.value;
-    }
+  if (posicionSpan) {
+    posicionSpan.textContent = inputPosicion.value;
+  }
 });
 
 inputFrecuencia?.addEventListener("input", function () {
-    if (frecuenciaSpan) {
-        frecuenciaSpan.textContent = inputFrecuencia.value;
-    }
+  if (frecuenciaSpan) {
+    frecuenciaSpan.textContent = inputFrecuencia.value;
+  }
 });
 
 // Arrays de imágenes
 const basePath = window.location.origin;
 const emisorImages: string[] = [
-    `./public/img/aire/ambulance.png`,
-    `./public/img/agua/whale.png`,
-    `./public/img/espacio/star.png`,
-    `./public/img/aire/airplane.png`
+  `./public/img/aire/ambulance.png`,
+  `./public/img/agua/whale.png`,
+  `./public/img/espacio/star.png`,
+  `./public/img/aire/airplane.png`
 ];
 
 const receptorImages: string[] = [
-    `https://png.pngtree.com/png-clipart/20230825/original/pngtree-man-raised-hand-rear-back-picture-image_8463680.png`,
-    `https://images.vexels.com/content/132061/preview/scuba-diver-silhouette-45a534.png`,
-    `https://png.pngtree.com/png-vector/20240619/ourmid/pngtree-cute-astronaut-drawing-png-image_12797433.png`
+  `https://png.pngtree.com/png-clipart/20230825/original/pngtree-man-raised-hand-rear-back-picture-image_8463680.png`,
+  `https://images.vexels.com/content/132061/preview/scuba-diver-silhouette-45a534.png`,
+  `https://png.pngtree.com/png-vector/20240619/ourmid/pngtree-cute-astronaut-drawing-png-image_12797433.png`
 ];
 
 const bgImages: string[] = [
-    `./public/img/aire/casa.png`,
-    `./public/img/agua/ocean-bg.jpg`,
-    `./public/img/espacio/space-bg.jpg`,
-    `./public/img/aire/nieve.png`
+  `./public/img/aire/casa.png`,
+  `./public/img/agua/ocean-bg.jpg`,
+  `./public/img/espacio/space-bg.jpg`,
+  `./public/img/aire/nieve.png`
 ];
 
 
 // Función para cambiar el medio
 function cambiarMedio(medio: number) {
 
-    if (!simulador || !recept || !emisor) return;
-    if (!aireNavidad ||!aire ||!agua||!vacio) return;
+  if (!simulador || !recept || !emisor) return;
+  if (!aireNavidad || !aire || !agua || !vacio) return;
 
-    const isDecember = currentMonth === 12; 
-    switch (medioIndex) {
-      case 0:
-        aireNavidad.style.display = 'none';          
-        aire.style.display = 'flex';
-        agua.style.display = 'none';
-        vacio.style.display = 'none';
-        break;
-      case 1:
-        aireNavidad.style.display = 'none';          
-        aire.style.display = 'none';
-        agua.style.display = 'flex';
-        vacio.style.display = 'none';
-        break;
-      case 2:
-        aireNavidad.style.display = 'none';          
-        aire.style.display = 'none';
-        agua.style.display = 'none';
-        vacio.style.display = 'flex';
-        break;
-      default:
-        break;
-    }
-    simulador.style.backgroundImage = medio == 0 ? ( isDecember ? `url(${bgImages[3]})` : `url(${bgImages[0]})`) : `url(${bgImages[medio]})`;
-    recept.style.backgroundImage = `url(${receptorImages[medio]})`;
-    emisor.style.backgroundImage = `url(${emisorImages[medio]})`;
-    console.log(recept);
-    console.log(emisor); 
-    console.log(medio);
+  const isDecember = currentMonth === 12;
+  switch (medioIndex) {
+    case 0:
+      aireNavidad.style.display = 'none';
+      aire.style.display = 'flex';
+      agua.style.display = 'none';
+      vacio.style.display = 'none';
+      break;
+    case 1:
+      aireNavidad.style.display = 'none';
+      aire.style.display = 'none';
+      agua.style.display = 'flex';
+      vacio.style.display = 'none';
+      break;
+    case 2:
+      aireNavidad.style.display = 'none';
+      aire.style.display = 'none';
+      agua.style.display = 'none';
+      vacio.style.display = 'flex';
+      break;
+    default:
+      break;
+  }
+  simulador.style.backgroundImage = medio == 0 ? (isDecember ? `url(${bgImages[3]})` : `url(${bgImages[0]})`) : `url(${bgImages[medio]})`;
+  recept.style.backgroundImage = `url(${receptorImages[medio]})`;
+  emisor.style.backgroundImage = `url(${emisorImages[medio]})`;
+  // console.log(recept);
+  // console.log(emisor);
+  // console.log(medio);
 }
 
 // Configuración inicial
 cambiarMedio(0);
 configuracion = configuracionesMedios.Ambulancia;
-if (configuracion) configurarInputs(configuracion); 
+if (configuracion) configurarInputs(configuracion);
 
 
+// --- Simulation Code ---
 
-
-/*  */
-const MAX_VEHICLE_SPEED = 3;
-
-
-
-let waveFrequency = inputFrecuencia ? parseFloat(inputFrecuencia.value) : 0; 
+const MAX_VEHICLE_SPEED = 5;
+let volume = 0.5;
+let waveFrequency = inputFrecuencia ? parseFloat(inputFrecuencia.value) : 0;
 let vehicleSpeed = inputVelocidad ? parseFloat(inputVelocidad.value) : 0;
 let espectatorPosition = inputPosicion ? parseFloat(inputPosicion.value) : 0;
 let radiusIncrementSize = 3;
-
 
 // Waves array
 let waves: SoundWave[] = [];
@@ -242,19 +239,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 // Get Audio Context
-// const audio_ctx: AudioContext = new window.AudioContext();
-
-// Get Mouse Position to draw waves
-// let x = 0;
-// let y = 0;
-
-// function handleMouseMove(this: Window, event: MouseEvent) {
-//   x = event.clientX;
-//   y = event.clientY;
-// };
-
-// // Set mouse event to update waves new position on mouse move
-// onmousemove = handleMouseMove;
+const audioCtx: AudioContext = new window.AudioContext();
 
 // Define vehicle
 const vehicle = new Vehicle(
@@ -281,12 +266,13 @@ const star = new Vehicle(
   "⭐"
 );
 // Insert new waves according to the frequency
-
+let neenaw = "nee";
 function waveGenerator() {
+  neenaw = neenaw == "nee" ? "naw" : "nee";
   let wave;
   switch (medioIndex) {
     case 0:
-      wave = new SoundWave(vehicle.x, vehicle.y, "#00007f4f", waveFrequency);
+      wave = new SoundWave(vehicle.x, vehicle.y, "#00007f4f", waveFrequency, neenaw);
       break;
     case 1:
       wave = new SoundWave(whale.x, whale.y, "#00007f4f", waveFrequency);
@@ -297,29 +283,26 @@ function waveGenerator() {
     default:
       break;
   }
-  
+
   waves.push(wave);
-  setTimeout(waveGenerator, waveFrequency);
+  setTimeout(waveGenerator, medioIndex == 0 ? waveFrequency * 10 : waveFrequency);
 }
 
 if (inputFrecuencia) {
   inputFrecuencia.addEventListener("input", () => {
-    console.log("Frecuencia actualizada", inputFrecuencia.value);
-    waveFrequency = parseFloat(inputFrecuencia.value) || 0; // Actualiza waveFrequency
-    
+    // console.log("Frecuencia actualizada", inputFrecuencia.value);
+    waveFrequency = mapRange(parseFloat(inputFrecuencia.value), configuracion?.minFrecuencia, configuracion?.maxFrecuencia, 0, 10); // Actualiza waveFrequency
+    console.log(waveFrequency);
   });
 }
 
 // Llama al generador de ondas por primera vez
 
- waveGenerator();
+waveGenerator();
 function updateControls() {
-  if (inputFrecuencia) {
-    waveFrequency = 1000 / (inputFrecuencia.valueAsNumber / 10);
-  }
-  if (inputVelocidad) {
-    vehicleSpeed = MAX_VEHICLE_SPEED * (inputVelocidad.valueAsNumber / 100);
-  }
+  waveFrequency = (1 / inputFrecuencia!.valueAsNumber) * 10000;
+  vehicleSpeed = MAX_VEHICLE_SPEED * (inputVelocidad!.valueAsNumber / 100);
+  volume = parseInt(inputVolumen!.value) / 100;
 }
 // Main sim loop
 let endLoop = false;
@@ -327,8 +310,8 @@ let endLoop = false;
 function loop() {
   if (endLoop) return;
   // Update input from controls
-   updateControls();
- 
+  updateControls();
+
   // Update vehicle position
   switch (medioIndex) {
     case 0:
@@ -343,7 +326,10 @@ function loop() {
     default:
       break;
   }
-  
+
+  // Clear past waves
+  if (vehicle.x < 0)
+    waves = [];
 
   // Update waves size and position
   waves.forEach((wave) => {
@@ -355,7 +341,7 @@ function loop() {
   ctx.reset();
 
   if (medioIndex == 0) {
-    
+
   }
 
   switch (medioIndex) {
@@ -371,12 +357,20 @@ function loop() {
     default:
       break;
   }
-  
-  // Draw the waves
+
+  // Get receptor position
+  let receptorPosition = recept?.getBoundingClientRect();
+
   waves.forEach((wave) => {
+    // Draw the waves
     wave.draw(ctx);
+    // Play the soundwave
+    if (euclideanDistance(receptorPosition?.x, receptorPosition?.y, wave.x, wave.y) <= wave.radius) {
+      wave.play(audioCtx, 0.05, parseInt(inputVolumen!.value) / 100);
+    }
   });
   ctx.restore();
+
 
   requestAnimationFrame(loop);
 }
@@ -399,12 +393,12 @@ if (btnUsarDatos) {
         default:
           break;
       }
-      
+
 
       loop();
     } else {
       btnUsarDatos.textContent = "Usar datos";
-      
+
       stopLoop();
     }
   });

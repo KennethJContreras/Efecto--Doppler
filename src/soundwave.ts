@@ -6,14 +6,15 @@ class SoundWave {
   color: string;
   radius: number = 0;
   frequency: number = 0;
+  soundVariation: string;
+  played: boolean = false;
 
-  constructor(x: number, y: number, color: string, frequency: number) {
+  constructor(x: number, y: number, color: string, frequency: number, soundVariation: string = "") {
     this.x = x;
     this.y = y;
     this.color = color;
     this.frequency = frequency;
-/*     console.log("SoundWave created");
-    console.log(this); */
+    this.soundVariation = soundVariation;
   }
 
   update(radiusIncrement) {
@@ -28,8 +29,27 @@ class SoundWave {
     ctx.stroke();
   }
 
-  play() {
+  play(audioCtx: AudioContext, duration: number = 0.05, volume: number) {
+    if (this.played) return;
 
+    const gainNode = audioCtx.createGain();           // Create gain node to control volume
+    const oscilator = audioCtx.createOscillator();    // Create Oscilator to generate sound
+    oscilator.type = "sawtooth";
+
+    // Siren sound simulation
+    if (this.soundVariation) {
+      oscilator.frequency.setValueAtTime(this.soundVariation == "nee" ? 500 : 700, audioCtx.currentTime);
+    } else {
+      oscilator.frequency.setValueAtTime(this.frequency, audioCtx.currentTime);
+    }
+
+    oscilator.connect(gainNode);      // Link oscilator with gain node
+    gainNode.connect(audioCtx.destination);
+
+    oscilator.start();
+    oscilator.stop(audioCtx.currentTime + duration);
+    gainNode.gain.setValueAtTime(volume, audioCtx.currentTime);
+    this.played = true;
   }
 
 }
