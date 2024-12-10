@@ -31,7 +31,7 @@ inputPosicion?.addEventListener('input', () => {
   if (recept) {
     // Obtiene el ancho del contenedor y del receptor
     const contenedor = document.getElementById('simulador');
-    const anchoContenedor = contenedor.offsetWidth;
+    const anchoContenedor = contenedor!.offsetWidth;
     const anchoReceptor = recept.offsetWidth;
 
     // Calcula el rango de movimiento permitido para el receptor
